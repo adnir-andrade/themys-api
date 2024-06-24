@@ -31,14 +31,13 @@ end
 
 # Criação de Personagens
 puts "Creating characters..."
-10.times do
+campaigns_player.each do |table|
   max_hp = Faker::Number.between(from: 10, to: 100)
   current_hp = Faker::Number.between(from: 1, to: 100) - max_hp
-  party = campaigns_player.sample
 
-  Character.create!(
-    player_id: User.pluck(:id).sample,
-    campaigns_player: party,
+  character = Character.create!(
+    player_id: table.player_id,
+    campaigns_player: table,
     name: Faker::Name.name,
     level: Faker::Number.between(from: 1, to: 20),
     gender: Faker::Gender.binary_type,
@@ -58,6 +57,8 @@ puts "Creating characters..."
     max_hp: max_hp,
     current_hp: current_hp
   )
+
+  table.update(character_id: character.id)
 end
 
 puts "Seed completed successfully!"
