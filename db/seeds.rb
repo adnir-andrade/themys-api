@@ -6,7 +6,7 @@ users = []
     username: Faker::Name.name,
     password: Faker::Internet.password,
     email: Faker::Internet.email,
-    )
+  )
 end
 
 # Criação de Campanhas
@@ -16,7 +16,7 @@ campaigns = []
   campaigns << Campaign.create!(
     dm_id: User.pluck(:id).sample,
     name: Faker::Fantasy::Tolkien.location,
-    )
+  )
 end
 
 # Criação de Jogadores em Campanhas
@@ -26,7 +26,7 @@ campaigns_player = []
   campaigns_player << CampaignsPlayer.create!(
     player_id: users.sample.id,
     campaign_id: campaigns.sample.id,
-    )
+  )
 end
 
 # Criação de Personagens
