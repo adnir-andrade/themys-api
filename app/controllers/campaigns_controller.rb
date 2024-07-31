@@ -44,10 +44,10 @@ class CampaignsController < ApplicationController
   private
 
   def set_campaign
-    @campaign = Campaign.find(campaign_params[:id])
+    @campaign = Campaign.find(params[:id])
   end
 
   def campaign_params
-    campaign_params.require(:campaign).permit(:dm_id, :name, :next_session)
+    params.require(:campaign).permit(:dm_id, :name, :next_session)
   end
 end
