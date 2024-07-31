@@ -40,7 +40,8 @@ class CampaignsController < ApplicationController
   end
 
   def destroy
-    render json: @campaign.destroy, status: 200
+    @campaign.destroy
+    render json: { message: "Campaign deleted successfully" }, status: :ok
   end
 
   private
