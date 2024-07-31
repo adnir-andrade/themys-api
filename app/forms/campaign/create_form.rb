@@ -27,9 +27,12 @@ class Campaign::CreateForm
 
   def future_date
     return if next_session.blank?
-
-    if next_session < Date.today
+    if next_session_date < Date.today
       errors.add(:next_session, " must be today or a date in the future.")
     end
+  end
+
+  def next_session_date
+    Date.parse(next_session) rescue nil
   end
 end
