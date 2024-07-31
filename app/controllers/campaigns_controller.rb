@@ -16,7 +16,7 @@ class CampaignsController < ApplicationController
   end
 
   def create
-    form = Campaign::CreateForm.new(campaign_params)
+    form = Campaign::CampaignForm.new(campaign_params)
 
     if form.create
       render json: form, status: 201, location: @campaign
@@ -30,10 +30,12 @@ class CampaignsController < ApplicationController
   end
 
   def update
-    if @campaign.update(campaign_params)
-      render json: @campaign
+    form = Campaign::CampaignForm.new(campaign_params)
+
+    if form.update(@campaign)
+      render json: form, status: 200
     else
-      render json: @campaign.errors, status: 422
+      render json: form.errors, status: 422
     end
   end
 
