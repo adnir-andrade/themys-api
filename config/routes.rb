@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   resources :campaigns
   resources :trades, only: [:create]
 
-  get '/reports/campaigns/pdf/(:option)', to: 'campaigns_report#index', defaults: { format: :pdf }
+  get '/reports/campaigns/(:option)', to: 'campaigns_report#index', defaults: { format: :pdf }
 end
