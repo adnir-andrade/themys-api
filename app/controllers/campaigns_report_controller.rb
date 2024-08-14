@@ -2,7 +2,6 @@ require_relative "../queries/campaigns/index_query"
 
 class CampaignsReportController < ReportsController
   include CampaignQuery
-  before_action :set_sorter
 
   def index
     data = CampaignQuery::sort_data(@sorter)
